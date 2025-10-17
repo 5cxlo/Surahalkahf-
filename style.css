@@ -83,7 +83,7 @@ body {
   display: inline-block; 
   
   color: var(--ayah-number-color);
-  font-size: 19px; /* حجم أصغر قليلاً */
+  font-size: 18px; /* حجم أصغر قليلاً */
   font-weight: bold; 
   
 ‎  /* إضافة مسافة حول الرقم لجعله فاصلاً واضحاً عن النص */
