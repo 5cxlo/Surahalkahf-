@@ -24,7 +24,8 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", "Noto Naskh Arabic", "Amiri", "Traditional Arabic", Arial, sans-serif;
+  /* تم تعديل الخط ليكون أكثر دقة ووضوحًا في الترتيب */
+  font-family: system-ui, -apple-system, "Segoe UI", "Scheherazade", "Amiri", "Noto Naskh Arabic", "Traditional Arabic", Arial, sans-serif;
   line-height:1.9;
 }
 
@@ -64,18 +65,49 @@ body{
   text-align:center; font-size:28px; margin:8px 0 12px; color:var(--accent);
 }
 
-/* الآيات */
-.ayahs{ font-size:20px }
+/* 🟢 بدأت تعديلات تنسيق الآيات هنا 🟢 */
+
+/* الحاوية العامة للآيات */
+.ayahs{ 
+    font-size:22px; /* تم توحيد الحجم بناءً على اختيارك */
+    font-family: "Scheherazade", "Amiri", serif;
+    line-height: 2.3; /* تباعد سطور أكبر لراحة العين */
+    text-align: justify; /* توزيع النص لملء السطر */
+}
+
+/* الآية الواحدة */
 .ayah{
-  border-bottom:1px dashed var(--line);
-  padding:10px 6px;
+  display: inline; /* لضمان ظهور الآيات متصلة في سطر واحد */
+  border: none;
+  padding: 0 4px;
+  white-space: pre-wrap;
+  
+  /* المسافة التي تفصل نهاية الآية عن رقم الآية التالي */
+  margin-right: 0.8em; 
 }
 .ayah:last-child{ border-bottom:none }
+
+
+/* رقم الآية (تم تعديل هذا الجزء لحل مشكلة المسافات) */
 .num {
-  color: #1a6334;
+  /* لضمان وضوح الرقم وتطبيق المسافات بشكل صحيح */
+  display: inline-block; 
+  color: var(--accent); /* استخدام اللون الأخضر الزيتي */
   font-size: 20px;
-  margin: 0 2px;
+  font-weight: bold;
+  
+  /* 💥 الحل الجذري: زيادة المسافة بعد الرقم (على اليسار) */
+  padding-left: 10px; 
+  
+  /* مسافة اختيارية قبل الرقم (على اليمين) */
+  padding-right: 5px; 
+  
+  margin: 0; 
 }
+
+/* 🔴 نهاية تعديلات تنسيق الآيات 🔴 */
+
+
 /* الملاحظة */
 .note{
   margin-top:18px; padding:12px 12px;
@@ -100,27 +132,4 @@ body{
 @media (max-width: 520px){
   .container{ margin: 12px 8px 48px; padding:14px 12px }
   .ayahs{ font-size:19px }
-}/* === تحسين عرض الآيات وتعديل المسافات بين الأرقام والنص === */
-.ayah {
-  display: inline;
-  border: none;              /* نحذف الخط السفلي بين الآيات */
-  padding: 0 4px;            /* تقليل التباعد الداخلي */
-  white-space: pre-wrap;
 }
-
-.ayah + .ayah {
-  margin-left: 0.42em;       /* ← المسافة بين نهاية الآية ورقم الآية التالية (مطابقة لموقع b5b5) */
-}
-
-.num {
-  margin: 0 5px;             /* ← فراغ بسيط حول رقم الآية */
-  font-weight: 600;
-  color: var(--accent);
-}
-.ayah-number {
-  margin-left: 2px;   /* تقليل المسافة */
-  font-size: 90%;     /* تصغير الرقم قليلاً */
-  position: relative;
-  top: -1px;           /* رفع الرقم شوي */
-}
-/* تنسيق رقم الآية ليبدو مثل مصحف المدينة */
