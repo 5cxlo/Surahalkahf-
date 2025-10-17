@@ -122,7 +122,7 @@ body.dark-mode .footer .palms {
   
   /* تنسيقات شكل المصحف */
   font-family: 'Scheherazade New', 'Amiri', serif; 
-  font-size: 30px; /* تم تعديله إلى 30px ليقترب من الصورة */
+  font-size: 28px; /* تم تعديله إلى 30px ليقترب من الصورة */
   line-height: 2.3; /* تباعد كبير للأسطر */
   color: var(--quran-text-color);
   
@@ -137,7 +137,7 @@ body.dark-mode .footer .palms {
 .num {
   display: inline-block; /* مهم لتدفق النص الأفقي */
   color: var(--ayah-number-color);
-  font-size: 22px; 
+  font-size: 17px; 
   font-weight: bold; 
   padding: 0 8px; 
   margin: 0 10px; 
