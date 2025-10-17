@@ -32,6 +32,12 @@ body {
   transition: background-color 0.3s, color 0.3s; 
 }
 
+.container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 /* ------------------------------------
    تنسيقات الوضع الداكن (Dark Mode)
    ------------------------------------ */
@@ -49,16 +55,12 @@ body.dark-mode .bismillah {
 }
 
 body.dark-mode .ayahs {
-  /* جعل خلفية كتلة الآيات أغمق */
+  /* خلفية أغمق لكتلة الآيات */
   background-color: #2a2a2a; 
+  color: var(--dark-quran-text);
 }
 
-body.dark-mode .ayahs,
-body.dark-mode .ayahs > span {
-    color: var(--dark-quran-text);
-}
-
-body.dark-mode .num {
+body.dark-mode .ayahs .num {
   color: var(--dark-ayah-number-color); 
 }
 
@@ -75,12 +77,9 @@ body.dark-mode .footer .palms {
   fill: var(--dark-bg); 
 }
 
-/* تنسيقات الـ Layout */
-.container {
-  max-width: 950px;
-  margin: 0 auto;
-  padding: 20px;
-}
+/* ------------------------------------
+   تنسيقات الأجزاء الرئيسية
+   ------------------------------------ */
 
 /* تنسيق شريط الرأس (Header) */
 .topbar {
@@ -91,7 +90,7 @@ body.dark-mode .footer .palms {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  transition: background-color 0.3s; /* ليكون التبديل سلسًا */
+  transition: background-color 0.3s;
 }
 
 .btn {
@@ -102,7 +101,7 @@ body.dark-mode .footer .palms {
   margin-right: 10px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s; /* ليكون التبديل سلسًا */
+  transition: background-color 0.3s;
 }
 
 /* تنسيق البسملة */
@@ -117,46 +116,33 @@ body.dark-mode .footer .palms {
 
 /* 1. التنسيق الأساسي لكتلة الآيات (الحاوية الأم) */
 .ayahs {
-  background-color: var(--white); /* لون خلفية كتلة الآيات */
+  /* لإعادة تدفق النص ككتلة واحدة كما في المصحف */
+  text-align: justify; 
+  text-justify: inter-word; 
+  
+  /* تنسيقات شكل المصحف */
+  font-family: 'Scheherazade New', 'Amiri', serif; 
+  font-size: 30px; /* تم تعديله إلى 30px ليقترب من الصورة */
+  line-height: 2.3; /* تباعد كبير للأسطر */
+  color: var(--quran-text-color);
+  
+  background-color: var(--white);
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   padding: 20px 30px;
   margin: 30px auto;
 }
 
-/* 💥 التنسيق الرئيسي لنص الآيات */
-.ayahs > span,
-.ayahs > div,
-.ayahs {
-    /* استخدام خط Scheherazade New الذي يعطي شكل المصحف */
-    font-family: 'Scheherazade New', 'Amiri', serif; 
-    font-size: 40px; 
-    line-height: 2.5; /* أهم تعديل: زيادة كبيرة لارتفاع السطر لمنع التداخل */
-    color: var(--quran-text-color);
-    text-align: justify; /* محاذاة كاملة لتحقيق مظهر المصحف */
-    text-justify: inter-word; 
-    display: block; /* لضمان أن كل كتلة آية تأخذ سطر جديد */
-    margin: 0; 
-    padding: 10px 0; 
-    border-bottom: 1px dashed #eee;
-}
-
-/* 2. تنسيق رقم الآية (span.num) - يجب أن يكون inline-block ليتناسب مع النص */
+/* 2. تنسيق رقم الآية (span.num) */
 .num {
-  display: inline-block; /* ليتناسب مع تدفق النص */
+  display: inline-block; /* مهم لتدفق النص الأفقي */
   color: var(--ayah-number-color);
-  font-size: 24px; 
+  font-size: 22px; 
   font-weight: bold; 
-  padding: 0 10px;
-  margin-left: 5px;
-  vertical-align: middle;
+  padding: 0 8px; 
+  margin: 0 10px; 
+  /* تم إزالة vertical-align: middle لعدم الحاجة إليه بعد إصلاح الـ HTML */
 }
-
-/* إزالة الفاصل من الآية الأخيرة (غير ممكن بتنسيقك الحالي، لكن هذا هو الأفضل) */
-.ayahs *:last-child {
-    border-bottom: none !important;
-}
-
 
 /* تنسيق الملاحظة في نهاية الصفحة */
 .note {
