@@ -6,7 +6,7 @@ const playAudioBtn  = document.getElementById("playAudio");
 const shareBtn      = document.getElementById("shareBtn");
 
 // ضع رابط ملف MP3 المباشر لصوت "عمر ضياء الدين" هنا:
-const AUDIO_URL = "https://example.com/omar-diya-aldein-alkahf.mp3"; // ← غيّره إلى رابط مباشر
+const AUDIO_URL = "https://server10.mp3quran.net/ajm/128/018.mp3"; // ← غيّره إلى رابط مباشر
 
 const audio = new Audio(AUDIO_URL);
 audio.preload = "none";
