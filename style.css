@@ -1,135 +1,114 @@
-/* ألوان مريحة: رمادي فاتح + نص داكن + لمسات زيتية */
-:root{
-  --bg:#f2f3f4;
-  --text:#1f2a2e;
-  --muted:#6e7b7f;
-  --accent:#3b7f5a;      /* أخضر زيتي */
-  --accent-2:#2e6247;
-  --paper:#ffffff;
-  --line:#e3e7e9;
-}
-body.dark{
-  --bg:#0f1213;
-  --text:#e8eeee;
-  --muted:#9fb0b6;
-  --accent:#5bb68a;
-  --accent-2:#4a9a75;
-  --paper:#151a1c;
-  --line:#263036;
+/* متغيرات (Variables) للتحكم في الألوان بسهولة */
+:root {
+  --primary-color: #3b7f5a; /* لون أخضر أساسي */
+  --text-color: #333;
+  --bg-color: #f7f7f7;
+  --accent-color: #555;
+  --white: #fff;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  /* تم تعديل الخط ليكون أكثر دقة ووضوحًا في الترتيب */
-  font-family: system-ui, -apple-system, "Segoe UI", "Scheherazade", "Amiri", "Noto Naskh Arabic", "Traditional Arabic", Arial, sans-serif;
-  line-height:1.9;
+/* التنسيقات العامة */
+body {
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  direction: rtl; /* ضمان الاتجاه من اليمين لليسار */
 }
 
-/* الشريط العلوي */
-.topbar{
-  position:sticky; top:0; z-index:20;
-  background:linear-gradient(0deg, var(--paper), var(--paper));
-  border-bottom:1px solid var(--line);
-  display:flex; align-items:center; justify-content:space-between;
-  gap:12px; padding:10px 14px;
-}
-.topbar h1{ margin:0; font-size:20px; color:var(--accent-2); letter-spacing:.5px }
-.actions{ display:flex; gap:8px; flex-wrap:wrap }
-.btn{
-  border:1px solid var(--line);
-  background:var(--paper);
-  color:var(--text);
-  padding:8px 12px; border-radius:10px; cursor:pointer;
-  transition:.2s ease;
-  font-size:14px;
-}
-.btn:hover{ border-color:var(--accent); color:var(--accent-2) }
-
-/* الحاوية */
-.container{
-  max-width: 860px;
-  margin: 18px auto 60px;
-  background: var(--paper);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding: 18px 16px;
-  box-shadow: 0 2px 18px rgba(0,0,0,.04);
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* البسملة */
-.bismillah{
-  text-align:center; font-size:28px; margin:8px 0 12px; color:var(--accent);
+/* تنسيق شريط الرأس (Header) */
+.topbar {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-/* 🟢 بدأت تعديلات تنسيق الآيات هنا 🟢 */
-
-/* الحاوية العامة للآيات */
-.ayahs{ 
-    font-size:22px; /* تم توحيد الحجم بناءً على اختيارك */
-    font-family: "Scheherazade", "Amiri", serif;
-    line-height: 2.3; /* تباعد سطور أكبر لراحة العين */
-    text-align: justify; /* توزيع النص لملء السطر */
-}
-
-/* الآية الواحدة */
-.ayah{
-  display: inline; /* لضمان ظهور الآيات متصلة في سطر واحد */
+.btn {
+  background: var(--accent-color);
+  color: var(--white);
   border: none;
-  padding: 0 4px;
-  white-space: pre-wrap;
-  
-  /* المسافة التي تفصل نهاية الآية عن رقم الآية التالي */
-  margin-right: 0.8em; 
+  padding: 8px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
 }
-.ayah:last-child{ border-bottom:none }
 
+/* تنسيق البسملة */
+.bismillah {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+}
 
-/* رقم الآية (تم تعديل هذا الجزء لحل مشكلة المسافات) */
+/* 1. التنسيق الأساسي لكتلة الآيات */
+.ayahs {
+  /* الخطوط العربية الأفضل لقراءة القرآن */
+  font-family: "Scheherazade", "Amiri", serif;
+  font-size: 24px;
+  line-height: 2.5; /* تباعد الأسطر لراحة العين */
+  text-align: justify; /* محاذاة النص لكلا الطرفين ليكون ككتلة واحدة */
+  text-justify: inter-word; /* تحسين المحاذاة في بعض المتصفحات */
+}
+
+/* 2. العنصر الذي يحتوي الآية الواحدة (div.ayah) */
+.ayah {
+  /* 💥 هذا هو الحل: يحول الـ <div> من سطر منفصل إلى تدفق نصي متواصل */
+  display: inline;
+  /* مسافة بعد نهاية الآية وقبل رقم الآية التالية */
+  margin-right: 0.8em;
+  
+  /* مهم للتعامل مع النصوص الطويلة */
+  white-space: pre-wrap; 
+}
+
+/* 3. تنسيق رقم الآية (span.num) */
 .num {
-  /* لضمان وضوح الرقم وتطبيق المسافات بشكل صحيح */
-  display: inline-block; 
-  color: var(--accent); /* استخدام اللون الأخضر الزيتي */
+  /* يسمح بالتحكم في البادنج والمسافات حول العنصر بشكل دقيق */
+  display: inline-block;
+  
+  color: var(--primary-color); /* لون مميز لرقم الآية */
   font-size: 20px;
   font-weight: bold;
   
-  /* 💥 الحل الجذري: زيادة المسافة بعد الرقم (على اليسار) */
+  /* المسافة بين رقم الآية والنص التالي (بداية الآية الجديدة) */
   padding-left: 10px; 
   
-  /* مسافة اختيارية قبل الرقم (على اليمين) */
+  /* مسافة صغيرة بين نهاية الآية السابقة والرقم */
   padding-right: 5px; 
-  
-  margin: 0; 
 }
 
-/* 🔴 نهاية تعديلات تنسيق الآيات 🔴 */
-
-
-/* الملاحظة */
-.note{
-  margin-top:18px; padding:12px 12px;
-  text-align:center; color:var(--accent-2);
-  background:linear-gradient(0deg, rgba(59,127,90,.06), rgba(59,127,90,.04));
-  border:1px solid rgba(59,127,90,.15);
-  border-radius:10px;
+/* تنسيق التذييل (Footer) */
+.footer {
+  position: relative;
+  margin-top: 50px;
+  padding-top: 50px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
 }
 
-/* الفوتر مع النخيل */
-.footer{ position:relative; }
-.palms{
-  display:block; width:100%; height:120px;
-  fill: var(--accent);
-  opacity:.18;
-}
-.date{
-  text-align:center; color:var(--muted); font-size:13px; margin-top:-10px; margin-bottom:18px;
+.footer .palms {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  fill: var(--bg-color); /* لون خلفية الصفحة */
+  transform: translateY(-100%);
 }
 
-/* وضع القراءة على الشاشات الصغيرة */
-@media (max-width: 520px){
-  .container{ margin: 12px 8px 48px; padding:14px 12px }
-  .ayahs{ font-size:19px }
+.footer .date {
+  padding: 15px 0;
 }
