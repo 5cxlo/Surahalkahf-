@@ -137,7 +137,7 @@ body.dark-mode .footer .palms {
 .num {
   display: inline-block; /* مهم لتدفق النص الأفقي */
   color: var(--ayah-number-color);
-  font-size: 19px; 
+  font-size: 21px; 
   font-weight: bold; 
   padding: 0 8px; 
   margin: 0 10px; 
