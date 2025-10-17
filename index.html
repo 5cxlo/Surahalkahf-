@@ -255,7 +255,23 @@
     </svg>
     <div class="date"> جمعة مُباركة والله يكتب اجر الجميع</div>
   </footer>
+    <script src="script.js"></script>
 
-  <script src="script.js"></script>
+  <script>
+  let audio = new Audio("https://server10.mp3quran.net/ajm/128/018.mp3");
+  let isPlaying = false;
+
+  document.getElementById("playAudio").addEventListener("click", function() {
+    if (!isPlaying) {
+      audio.play();
+      isPlaying = true;
+      this.textContent = "⏸️ إيقاف";
+    } else {
+      audio.pause();
+      isPlaying = false;
+      this.textContent = "▶️ تشغيل";
+    }
+  });
+  </script>
 </body>
 </html>
