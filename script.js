@@ -14,7 +14,7 @@ let isPlaying = false;
 
 // 🎧 تشغيل/إيقاف
 playAudioBtn.addEventListener("click", () => {
-  if (!AUDIO_URL || AUDIO_URL.startsWith("https://example.com")) {
+  if (!AUDIO_URL || AUDIO_URL.startsWith("https://server10.mp3quran.net/ajm/128/018.mp3")) {
     alert("ضع رابط الصوت المباشر أولاً داخل script.js في المتغيّر AUDIO_URL.");
     return;
   }
