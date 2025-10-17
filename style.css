@@ -101,4 +101,20 @@ body{
 @media (max-width: 520px){
   .container{ margin: 12px 8px 48px; padding:14px 12px }
   .ayahs{ font-size:19px }
+}/* === تحسين عرض الآيات وتعديل المسافات بين الأرقام والنص === */
+.ayah {
+  display: inline;
+  border: none;              /* نحذف الخط السفلي بين الآيات */
+  padding: 0 4px;            /* تقليل التباعد الداخلي */
+  white-space: pre-wrap;
+}
+
+.ayah + .ayah {
+  margin-left: 0.42em;       /* ← المسافة بين نهاية الآية ورقم الآية التالية (مطابقة لموقع b5b5) */
+}
+
+.num {
+  margin: 0 5px;             /* ← فراغ بسيط حول رقم الآية */
+  font-weight: 600;
+  color: var(--accent);
 }
