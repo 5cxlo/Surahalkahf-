@@ -73,10 +73,8 @@ body{
 .ayah:last-child{ border-bottom:none }
 .num {
   color: #1a6334;
-  font-size: 19px;        /* تصغير بسيط للرقم */
-  margin: 0 0.1em 0 0;    /* تقليل المسافة اليمنى فقط */
-  position: relative;
-  top: -1px;              /* رفع الرقم شوي عشان يكون بمحاذاة النص */
+  font-size: 20px;
+  margin: 0 2px;
 }
 /* الملاحظة */
 .note{
@@ -126,20 +124,3 @@ body{
   top: -1px;           /* رفع الرقم شوي */
 }
 /* تنسيق رقم الآية ليبدو مثل مصحف المدينة */
-.num {
-  display: inline-block;
-  background-color: #fff;        /* لون خلفية الدائرة */
-  border: 1.5px solid #1a6334;   /* لون إطار الدائرة */
-  color: #1a6334;                /* لون الرقم */
-  border-radius: 50%;            /* يخليه دائرة */
-  width: 1.4em;                  /* حجم الدائرة */
-  height: 1.4em;
-  line-height: 1.4em;            /* يوسّط الرقم داخل الدائرة */
-  text-align: center;            /* يجعل الرقم في منتصف الدائرة */
-  font-size: 0.85em;             /* حجم الرقم داخل الدائرة */
-  margin-left: 0.15em;           /* تقليل المسافة بين الرقم والكلمة */
-  margin-right: -0.25em;         /* تقريب الرقم أكثر للنص */
-  position: relative;
-  top: -0.1em;                   /* رفع الرقم شوي */
-  font-family: 'KFGQPC Uthmanic Script', 'Scheherazade', serif; /* خط قريب من مصحف المدينة */
-}
