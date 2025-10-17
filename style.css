@@ -65,7 +65,7 @@ body {
 .ayahs {
   /* استخدام خطوط مخصصة وجميلة للنص القرآني */
   font-family: 'Scheherazade New', 'Amiri', serif;
-  font-size: 28px; /* حجم كبير وواضح */
+  font-size: 32px; /* حجم كبير وواضح */
   line-height: 2.3; /* تباعد كبير للأسطر لراحة العين */
   color: var(--quran-text-color);
   
@@ -83,7 +83,7 @@ body {
   display: inline-block; 
   
   color: var(--ayah-number-color);
-  font-size: 20px; /* حجم أصغر قليلاً */
+  font-size: 17px; /* حجم أصغر قليلاً */
   font-weight: bold; 
   
   /* إضافة مسافة حول الرقم لجعله فاصلاً واضحاً عن النص */
