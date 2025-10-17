@@ -1,15 +1,19 @@
-‎/* متغيرات (Variables) للتحكم في الألوان بسهولة */
+/* متغيرات (Variables) للتحكم في الألوان بسهولة */
 :root {
   --primary-color: #3b7f5a; 
   --text-color: #333;
   --bg-color: #f7f7f7;
   --accent-color: #555;
   --white: #fff;
-  --quran-text-color: #000; /* لون نص الآيات */
-  --ayah-number-color: #3b7f5a; /* لون رقم الآية */
+  --quran-text-color: #000; 
+  --ayah-number-color: #888; 
+  /* متغيرات الوضع الداكن (سيتم تعديلها بواسطة JavaScript) */
+  --dark-bg: #1e1e1e;
+  --dark-text: #f0f0f0;
+  --dark-quran-text: #e0e0e0;
 }
 
-‎/* التنسيقات العامة والـ Reset */
+/* التنسيقات العامة والـ Reset */
 * {
     box-sizing: border-box;
 }
@@ -22,26 +26,38 @@ body {
   padding: 0;
   direction: rtl; 
   line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+/* --------------------
+   تنسيقات الوضع الداكن
+   -------------------- */
+body.dark-mode {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
 }
 
-‎/* تنسيق شريط الرأس (Header) */
-.topbar {
-  background-color: var(--primary-color);
-  color: var(--white);
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+body.dark-mode .topbar {
+  background-color: #004d40; /* لون أغمق للـ Header */
 }
 
-.btn {
+body.dark-mode .bismillah {
+  color: #a5d6a7; /* لون فاتح للبسملة */
+}
+
+body.dark-mode p.ayah {
+  color: var(--dark-quran-text);
+}
+
+body.dark-mode .footer {
+  background-color: #004d40;
+}
+
+body.dark-mode .footer .palms {
+  fill: var(--dark-bg);
+}
+
+.topbar .btn {
   background: var(--accent-color);
   color: var(--white);
   border: none;
@@ -49,9 +65,21 @@ body {
   margin-right: 10px;
   cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-‎/* تنسيق البسملة */
+body.dark-mode .topbar .btn {
+  background: #333;
+}
+
+/* تنسيقات الـ Layout */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* تنسيق البسملة */
 .bismillah {
   font-size: 30px;
   text-align: center;
@@ -61,38 +89,72 @@ body {
   font-weight: bold;
 }
 
-‎/* 1. التنسيق الأساسي لكتلة الآيات (الحاوية الأم) */
+/* 1. الحاوية العامة للآيات */
 .ayahs {
-‎  /* استخدام خطوط مخصصة وجميلة للنص القرآني */
-  font-family: 'Scheherazade New', 'Amiri', serif;
-  font-size: 32px; /* حجم كبير وواضح */
-  line-height: 2.3; /* تباعد كبير للأسطر لراحة العين */
-  color: var(--quran-text-color);
-  
-‎  /* 💥 أهم خاصية لتدفق النص ككتلة واحدة (كما في المصحف) */
-  text-align: justify; 
-  text-justify: inter-word; /* لتحسين شكل المسافات في العربية */
-  
   margin: 30px auto;
   padding: 0 15px;
 }
 
-‎/* 2. تنسيق رقم الآية (span.num) */
-.num {
-‎  /* يسمح بالتحكم في المسافات حول الرقم */
-  display: inline-block; 
+/* 💥 التنسيق لكل آية على حدة (تم تعديل الخط وحجمه وارتفاع السطر) */
+p.ayah {
+  /* زيادة حجم الخط قليلاً لراحة العين */
+  font-family: 'Scheherazade New', 'Amiri', serif;
+  font-size: 35px; /* تم زيادة الحجم ليكون أوضح */
   
-  color: var(--ayah-number-color);
-  font-size: 18px; /* حجم أصغر قليلاً */
-  font-weight: bold; 
+  /* أهم تعديل: زيادة ارتفاع السطر (Line Height) لمنع التداخل والـ (متداخل) */
+  line-height: 2.5; 
   
-‎  /* إضافة مسافة حول الرقم لجعله فاصلاً واضحاً عن النص */
-  padding: 0 8px; 
-  margin: 0 10px; 
+  color: var(--quran-text-color);
+  
+  /* لضمان المحاذاة الكاملة لكل آية */
+  text-align: justify; 
+  text-justify: inter-word;
+  
+  /* مسافة كافية بين كل آية والتي تليها */
+  margin-bottom: 10px; 
+  margin-top: 0; 
+  padding: 0;
 }
 
 
-‎/* تنسيق التذييل (Footer) */
+/* 2. تنسيق رقم الآية (span.num) */
+.num {
+  /* لضمان أن الآية لا تنفصل عن رقمها */
+  display: inline-block; 
+  
+  color: var(--ayah-number-color);
+  font-size: 19px; /* تم زيادة حجم الرقم قليلاً ليكون واضحاً */
+  font-weight: bold; 
+  
+  /* هوامش بسيطة جداً حول الرقم نفسه */
+  padding: 0 4px; /* زيادة الهامش الأفقي */
+  margin: 0 8px; /* زيادة الهامش حول الرقم */
+  
+  /* لجعل الرقم داخل دائرة زخرفية صغيرة */
+  border: 1px solid var(--ayah-number-color);
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  line-height: 23px;
+  vertical-align: middle;
+}
+
+body.dark-mode .num {
+    color: #a5d6a7;
+    border: 1px solid #a5d6a7;
+}
+
+/* تنسيق الملاحظة في نهاية الصفحة */
+.note {
+    text-align: center;
+    color: var(--accent-color);
+    margin: 40px 0 20px 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* تنسيق التذييل (Footer) */
 .footer {
   position: relative;
   margin-top: 50px;
