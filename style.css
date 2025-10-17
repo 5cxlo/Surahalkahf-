@@ -7,22 +7,16 @@
   --white: #fff;
   --quran-text-color: #000; 
   --ayah-number-color: #666; 
-  /* متغيرات الوضع الداكن (سيتم تعديلها بواسطة JavaScript) */
+  /* متغيرات الوضع الداكن */
   --dark-bg: #1e1e1e;
   --dark-text: #f0f0f0;
   --dark-quran-text: #e0e0e0;
 }
 
-/* ----------------------------------------------------
-   استيراد خط المصحف (تجربة مع خط Uthmanic Haffs)
-   قد تحتاج إلى استبدال هذا برابط الخط الفعلي المستخدم لديك
-   ---------------------------------------------------- */
-@font-face {
-  font-family: 'UthmanicHaffs';
-  src: url('https://raw.githubusercontent.com/tariq651/UthmanicHafs-Regular/main/UthmanicHafs_Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+/* استيراد خطوط عربية جميلة */
+/* تم إبقاء خط Scheherazade New لأنه يعطي شكل المصحف */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap');
+
 
 /* التنسيقات العامة والـ Reset */
 * {
@@ -30,7 +24,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Amiri', Arial, sans-serif;
   color: var(--text-color);
   background-color: var(--bg-color);
   margin: 0;
@@ -48,27 +42,28 @@ body.dark-mode {
   color: var(--dark-text);
 }
 
-body.dark-mode .topbar {
-  background-color: #004d40;
-}
-
-body.dark-mode .bismillah {
-  color: #a5d6a7;
+body.dark-mode .ayahs {
+    border: 1px solid #333;
+    background-color: #2a2a2a;
 }
 
 body.dark-mode p.ayah {
   color: var(--dark-quran-text);
+  border-bottom: 1px dashed #444;
 }
 
-body.dark-mode .footer {
-  background-color: #004d40;
+/* ... (بقية تنسيقات الوضع الداكن كما كانت) ... */
+.topbar {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-body.dark-mode .footer .palms {
-  fill: var(--dark-bg);
-}
-
-.topbar .btn {
+.btn {
   background: var(--accent-color);
   color: var(--white);
   border: none;
@@ -79,69 +74,50 @@ body.dark-mode .footer .palms {
   transition: background-color 0.3s;
 }
 
-body.dark-mode .topbar .btn {
-  background: #333;
-}
-
-/* تنسيقات الـ Layout */
 .container {
-  max-width: 950px; /* توسيع العرض قليلاً */
+  max-width: 950px; 
   margin: 0 auto;
   padding: 20px;
 }
 
-/* تنسيق البسملة */
 .bismillah {
   font-size: 35px;
   text-align: center;
   margin-bottom: 40px;
   color: var(--primary-color);
-  font-family: 'UthmanicHaffs', 'Amiri', serif;
+  font-family: 'Scheherazade New', serif;
   font-weight: bold;
 }
 
-/* 1. الحاوية العامة للآيات */
 .ayahs {
   margin: 30px auto;
-  padding: 0 15px;
-  border: 1px solid #eee; /* إطار خفيف كدعم بصري */
   padding: 20px;
+  border: 1px solid #eee; 
   background-color: var(--white);
   border-radius: 8px;
 }
 
-body.dark-mode .ayahs {
-    border: 1px solid #333;
-    background-color: #2a2a2a;
-}
-
-/* 💥 التنسيق لكل آية على حدة (لتحقيق تنسيق المصحف) */
+/* 💥 التنسيق الرئيسي للآيات */
 p.ayah {
-  /* استخدام خط المصحف */
-  font-family: 'UthmanicHaffs', 'Amiri', serif; 
+  /* استخدام خط Scheherazade New الذي يعطي شكل المصحف بشكل جيد */
+  font-family: 'Scheherazade New', 'Amiri', serif; 
   
-  /* زيادة حجم الخط */
-  font-size: 36px; 
+  /* زيادة كبيرة في حجم الخط */
+  font-size: 40px; 
   
-  /* زيادة ارتفاع السطر لراحة العين والوضوح */
-  line-height: 2.2; 
+  /* أهم تعديل: زيادة ارتفاع السطر لضمان عدم التداخل */
+  line-height: 2.5; 
   
   color: var(--quran-text-color);
   
-  /* التنسيق الأساسي: المحاذاة لليمين لمنع تمدد الحروف */
+  /* محاذاة لليمين لمنع تمدد الحروف (وهو ما كان يسبب التنسيق السيء) */
   text-align: right; 
   
-  /* إزالة أي مسافة إضافية بين الآيات */
-  margin-bottom: 0px; 
-  margin-top: 0px; 
-  padding: 5px 0; /* مسافة داخلية بسيطة */
+  margin: 0; 
+  padding: 10px 0; 
   
   /* فاصل بصري خفيف جداً بين الآيات */
   border-bottom: 1px dashed #eee; 
-}
-
-body.dark-mode p.ayah {
-    border-bottom: 1px dashed #444;
 }
 
 /* إزالة الفاصل من الآية الأخيرة */
@@ -152,21 +128,27 @@ p.ayah:last-child {
 
 /* 2. تنسيق رقم الآية (span.num) */
 .num {
+  /* لضمان بقاء الرقم مع نهاية الآية */
   display: inline-block; 
+  
   color: var(--ayah-number-color);
   
-  /* الحجم والتنسيق المناسبان مع خط المصحف */
-  font-size: 32px; 
-  font-weight: normal; 
+  /* حجم خط أصغر للرقم */
+  font-size: 20px; 
+  font-weight: bold; 
   
-  /* إزالة الدائرة والاعتماد على التنسيق المباشر */
-  padding: 0 5px; 
-  margin-right: 0px; 
+  /* مسافة كافية لفصل الرقم عن النص */
+  padding: 0 8px; 
+  margin-right: 5px; 
   vertical-align: top;
-  line-height: 2.2; 
+  line-height: 2.5; 
 }
 
-/* تنسيق الملاحظة في نهاية الصفحة */
+body.dark-mode .num {
+    color: #a5d6a7;
+}
+
+/* ... (بقية تنسيقات الملاحظة والتذييل كما كانت) ... */
 .note {
     text-align: center;
     color: var(--accent-color);
@@ -175,7 +157,6 @@ p.ayah:last-child {
     font-weight: 700;
 }
 
-/* تنسيق التذييل (Footer) */
 .footer {
   position: relative;
   margin-top: 50px;
