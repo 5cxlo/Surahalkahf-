@@ -6,11 +6,22 @@
   --accent-color: #555;
   --white: #fff;
   --quran-text-color: #000; 
-  --ayah-number-color: #888; 
+  --ayah-number-color: #666; 
   /* متغيرات الوضع الداكن (سيتم تعديلها بواسطة JavaScript) */
   --dark-bg: #1e1e1e;
   --dark-text: #f0f0f0;
   --dark-quran-text: #e0e0e0;
+}
+
+/* ----------------------------------------------------
+   استيراد خط المصحف (تجربة مع خط Uthmanic Haffs)
+   قد تحتاج إلى استبدال هذا برابط الخط الفعلي المستخدم لديك
+   ---------------------------------------------------- */
+@font-face {
+  font-family: 'UthmanicHaffs';
+  src: url('https://raw.githubusercontent.com/tariq651/UthmanicHafs-Regular/main/UthmanicHafs_Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* التنسيقات العامة والـ Reset */
@@ -38,11 +49,11 @@ body.dark-mode {
 }
 
 body.dark-mode .topbar {
-  background-color: #004d40; /* لون أغمق للـ Header */
+  background-color: #004d40;
 }
 
 body.dark-mode .bismillah {
-  color: #a5d6a7; /* لون فاتح للبسملة */
+  color: #a5d6a7;
 }
 
 body.dark-mode p.ayah {
@@ -74,18 +85,18 @@ body.dark-mode .topbar .btn {
 
 /* تنسيقات الـ Layout */
 .container {
-  max-width: 900px;
+  max-width: 950px; /* توسيع العرض قليلاً */
   margin: 0 auto;
   padding: 20px;
 }
 
 /* تنسيق البسملة */
 .bismillah {
-  font-size: 30px;
+  font-size: 35px;
   text-align: center;
   margin-bottom: 40px;
   color: var(--primary-color);
-  font-family: 'Amiri', serif;
+  font-family: 'UthmanicHaffs', 'Amiri', serif;
   font-weight: bold;
 }
 
@@ -93,56 +104,66 @@ body.dark-mode .topbar .btn {
 .ayahs {
   margin: 30px auto;
   padding: 0 15px;
+  border: 1px solid #eee; /* إطار خفيف كدعم بصري */
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 8px;
 }
 
-/* 💥 التنسيق لكل آية على حدة (تم تعديل الخط وحجمه وارتفاع السطر) */
+body.dark-mode .ayahs {
+    border: 1px solid #333;
+    background-color: #2a2a2a;
+}
+
+/* 💥 التنسيق لكل آية على حدة (لتحقيق تنسيق المصحف) */
 p.ayah {
-  /* زيادة حجم الخط قليلاً لراحة العين */
-  font-family: 'Scheherazade New', 'Amiri', serif;
-  font-size: 35px; /* تم زيادة الحجم ليكون أوضح */
+  /* استخدام خط المصحف */
+  font-family: 'UthmanicHaffs', 'Amiri', serif; 
   
-  /* أهم تعديل: زيادة ارتفاع السطر (Line Height) لمنع التداخل والـ (متداخل) */
-  line-height: 2.5; 
+  /* زيادة حجم الخط */
+  font-size: 36px; 
+  
+  /* زيادة ارتفاع السطر لراحة العين والوضوح */
+  line-height: 2.2; 
   
   color: var(--quran-text-color);
   
-  /* لضمان المحاذاة الكاملة لكل آية */
-  text-align: justify; 
-  text-justify: inter-word;
+  /* التنسيق الأساسي: المحاذاة لليمين لمنع تمدد الحروف */
+  text-align: right; 
   
-  /* مسافة كافية بين كل آية والتي تليها */
-  margin-bottom: 10px; 
-  margin-top: 0; 
-  padding: 0;
+  /* إزالة أي مسافة إضافية بين الآيات */
+  margin-bottom: 0px; 
+  margin-top: 0px; 
+  padding: 5px 0; /* مسافة داخلية بسيطة */
+  
+  /* فاصل بصري خفيف جداً بين الآيات */
+  border-bottom: 1px dashed #eee; 
+}
+
+body.dark-mode p.ayah {
+    border-bottom: 1px dashed #444;
+}
+
+/* إزالة الفاصل من الآية الأخيرة */
+p.ayah:last-child {
+    border-bottom: none;
 }
 
 
 /* 2. تنسيق رقم الآية (span.num) */
 .num {
-  /* لضمان أن الآية لا تنفصل عن رقمها */
   display: inline-block; 
-  
   color: var(--ayah-number-color);
-  font-size: 19px; /* تم زيادة حجم الرقم قليلاً ليكون واضحاً */
-  font-weight: bold; 
   
-  /* هوامش بسيطة جداً حول الرقم نفسه */
-  padding: 0 4px; /* زيادة الهامش الأفقي */
-  margin: 0 8px; /* زيادة الهامش حول الرقم */
+  /* الحجم والتنسيق المناسبان مع خط المصحف */
+  font-size: 32px; 
+  font-weight: normal; 
   
-  /* لجعل الرقم داخل دائرة زخرفية صغيرة */
-  border: 1px solid var(--ayah-number-color);
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  text-align: center;
-  line-height: 23px;
-  vertical-align: middle;
-}
-
-body.dark-mode .num {
-    color: #a5d6a7;
-    border: 1px solid #a5d6a7;
+  /* إزالة الدائرة والاعتماد على التنسيق المباشر */
+  padding: 0 5px; 
+  margin-right: 0px; 
+  vertical-align: top;
+  line-height: 2.2; 
 }
 
 /* تنسيق الملاحظة في نهاية الصفحة */
@@ -172,6 +193,10 @@ body.dark-mode .num {
   height: 50px;
   fill: var(--bg-color); 
   transform: translateY(-100%);
+}
+
+body.dark-mode .footer .palms {
+    fill: var(--dark-bg); 
 }
 
 .footer .date {
