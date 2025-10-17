@@ -118,3 +118,9 @@ body{
   font-weight: 600;
   color: var(--accent);
 }
+.ayah-number {
+  margin-left: 2px;   /* تقليل المسافة */
+  font-size: 90%;     /* تصغير الرقم قليلاً */
+  position: relative;
+  top: -1px;           /* رفع الرقم شوي */
+}
