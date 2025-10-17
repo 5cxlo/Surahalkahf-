@@ -7,6 +7,12 @@
   --white: #fff;
   --quran-text-color: #000; /* لون نص الآيات */
   --ayah-number-color: #3b7f5a; /* لون رقم الآية */
+  
+  /* 💡 المتغيرات الجديدة للوضع الداكن */
+  --dark-bg: #1e1e1e;
+  --dark-text: #f0f0f0;
+  --dark-quran-text: #e0e0e0;
+  --dark-ayah-number-color: #a5d6a7; 
 }
 
 /* التنسيقات العامة والـ Reset */
@@ -22,10 +28,56 @@ body {
   padding: 0;
   direction: rtl; 
   line-height: 1.6;
+  /* إضافة انتقال سلس للألوان عند التبديل بين الأوضاع */
+  transition: background-color 0.3s, color 0.3s; 
 }
 
+/* ------------------------------------
+   تنسيقات الوضع الداكن (Dark Mode)
+   ------------------------------------ */
+body.dark-mode {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+body.dark-mode .topbar {
+  background-color: #004d40; 
+}
+
+body.dark-mode .bismillah {
+  color: var(--dark-ayah-number-color); 
+}
+
+body.dark-mode .ayahs {
+  /* جعل خلفية كتلة الآيات أغمق */
+  background-color: #2a2a2a; 
+}
+
+body.dark-mode .ayahs,
+body.dark-mode .ayahs > span {
+    color: var(--dark-quran-text);
+}
+
+body.dark-mode .num {
+  color: var(--dark-ayah-number-color); 
+}
+
+body.dark-mode .btn {
+  background: #333; 
+  color: var(--dark-text);
+}
+
+body.dark-mode .footer {
+  background-color: #004d40; 
+}
+
+body.dark-mode .footer .palms {
+  fill: var(--dark-bg); 
+}
+
+/* تنسيقات الـ Layout */
 .container {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -39,6 +91,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  transition: background-color 0.3s; /* ليكون التبديل سلسًا */
 }
 
 .btn {
@@ -49,48 +102,70 @@ body {
   margin-right: 10px;
   cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.3s; /* ليكون التبديل سلسًا */
 }
 
 /* تنسيق البسملة */
 .bismillah {
-  font-size: 30px;
+  font-size: 35px;
   text-align: center;
   margin-bottom: 40px;
   color: var(--primary-color);
-  font-family: 'Amiri', serif;
+  font-family: 'Scheherazade New', 'Amiri', serif;
   font-weight: bold;
 }
 
 /* 1. التنسيق الأساسي لكتلة الآيات (الحاوية الأم) */
 .ayahs {
-  /* استخدام خطوط مخصصة وجميلة للنص القرآني */
-  font-family: 'Scheherazade New', 'Amiri', serif;
-  font-size: 30px; /* حجم كبير وواضح */
-  line-height: 2.3; /* تباعد كبير للأسطر لراحة العين */
-  color: var(--quran-text-color);
-  
-  /* 💥 أهم خاصية لتدفق النص ككتلة واحدة (كما في المصحف) */
-  text-align: justify; 
-  text-justify: inter-word; /* لتحسين شكل المسافات في العربية */
-  
+  background-color: var(--white); /* لون خلفية كتلة الآيات */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  padding: 20px 30px;
   margin: 30px auto;
-  padding: 0 15px;
 }
 
-/* 2. تنسيق رقم الآية (span.num) */
+/* 💥 التنسيق الرئيسي لنص الآيات */
+.ayahs > span,
+.ayahs > div,
+.ayahs {
+    /* استخدام خط Scheherazade New الذي يعطي شكل المصحف */
+    font-family: 'Scheherazade New', 'Amiri', serif; 
+    font-size: 40px; 
+    line-height: 2.5; /* أهم تعديل: زيادة كبيرة لارتفاع السطر لمنع التداخل */
+    color: var(--quran-text-color);
+    text-align: justify; /* محاذاة كاملة لتحقيق مظهر المصحف */
+    text-justify: inter-word; 
+    display: block; /* لضمان أن كل كتلة آية تأخذ سطر جديد */
+    margin: 0; 
+    padding: 10px 0; 
+    border-bottom: 1px dashed #eee;
+}
+
+/* 2. تنسيق رقم الآية (span.num) - يجب أن يكون inline-block ليتناسب مع النص */
 .num {
-  /* يسمح بالتحكم في المسافات حول الرقم */
-  display: inline-block; 
-  
+  display: inline-block; /* ليتناسب مع تدفق النص */
   color: var(--ayah-number-color);
-  font-size: 22px; /* حجم أصغر قليلاً */
+  font-size: 24px; 
   font-weight: bold; 
-  
-  /* إضافة مسافة حول الرقم لجعله فاصلاً واضحاً عن النص */
-  padding: 0 8px; 
-  margin: 0 10px; 
+  padding: 0 10px;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
+/* إزالة الفاصل من الآية الأخيرة (غير ممكن بتنسيقك الحالي، لكن هذا هو الأفضل) */
+.ayahs *:last-child {
+    border-bottom: none !important;
+}
+
+
+/* تنسيق الملاحظة في نهاية الصفحة */
+.note {
+    text-align: center;
+    color: var(--accent-color);
+    margin: 40px 0 20px 0;
+    font-size: 16px;
+    font-weight: 700;
+}
 
 /* تنسيق التذييل (Footer) */
 .footer {
@@ -100,6 +175,7 @@ body {
   background-color: var(--primary-color);
   color: var(--white);
   text-align: center;
+  transition: background-color 0.3s;
 }
 
 .footer .palms {
@@ -110,6 +186,7 @@ body {
   height: 50px;
   fill: var(--bg-color); 
   transform: translateY(-100%);
+  transition: fill 0.3s;
 }
 
 .footer .date {
